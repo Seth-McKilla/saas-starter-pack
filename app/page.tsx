@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold grid h-screen place-items-center text-center">
+    <h1 className="grid h-screen text-3xl font-bold text-center place-items-center">
       Welcome to the SaaS Starter Pack!
     </h1>
   );
