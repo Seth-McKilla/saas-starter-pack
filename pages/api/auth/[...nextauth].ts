@@ -1,7 +1,13 @@
 import NextAuth from "next-auth";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import EmailProvider from "next-auth/providers/email";
 
+import clientPromise from "@/lib/mongodb/client";
+
 export default NextAuth({
+  adapter: MongoDBAdapter(clientPromise, {
+    databaseName: process.env.MONGODB_AUTH_DB_NAME,
+  }),
   providers: [
     EmailProvider({
       server: {
@@ -16,8 +22,8 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: "/sign-in", // Uses the sign-in page we created in the last post
-    signOut: "/", // Redirects to the home page after sign out
+    signIn: "/sign-in",
+    signOut: "/",
   },
   session: {
     strategy: "jwt",
